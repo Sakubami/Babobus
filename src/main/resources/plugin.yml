@@ -1,4 +1,4 @@
-name: Nations
+name: DTLib
 version: '${version}'
-main: org.nations.Nations
+main: org.nations.DTLib
 api-version: '1.21'

@@ -1,4 +1,4 @@
-package org.nations.utils;
+package xyz.sakubami.framework.utils;
 
 import java.time.Duration;
 import java.time.Instant;

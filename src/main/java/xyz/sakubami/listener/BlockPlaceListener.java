@@ -1,8 +1,7 @@
-package org.nations.listener;
+package xyz.sakubami.listener;
 
 import com.jeff_media.customblockdata.CustomBlockData;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
@@ -11,14 +10,14 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import org.nations.Nations;
+import xyz.sakubami.DTLib;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BlockPlaceListener implements Listener {
 
-    private final Nations plugin;
+    private final DTLib plugin;
 
     private final NamespacedKey key;
 
@@ -29,7 +28,7 @@ public class BlockPlaceListener implements Listener {
     List<Material> uncommon = new ArrayList<>();
     List<Material> rare = new ArrayList<>();
 
-    public BlockPlaceListener(Nations plugin) {
+    public BlockPlaceListener(DTLib plugin) {
         this.plugin = plugin;
         key = new NamespacedKey(plugin, "wasPlaced");
         for (String s : (List<String>) plugin.getConfig().getList("common")) {
