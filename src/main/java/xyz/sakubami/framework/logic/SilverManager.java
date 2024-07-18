@@ -16,7 +16,6 @@ import xyz.sakubami.framework.chat.Chat;
  * @since 1.0
  */
 public class SilverManager {
-    
 
     public static SilverManager manager;
     private ItemStack placeHolder;
