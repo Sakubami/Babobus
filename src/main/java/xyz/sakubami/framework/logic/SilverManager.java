@@ -20,6 +20,7 @@ public class SilverManager {
     public static SilverManager manager;
     private ItemStack placeHolder;
 
+    
     //TODO include silver changing to ingots / blocks
     //TODO later >> include this in the Lib
 
