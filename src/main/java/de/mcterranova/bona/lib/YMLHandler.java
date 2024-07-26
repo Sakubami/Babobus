@@ -1,4 +1,4 @@
-package xyz.sakubami.framework.utils;
+package de.mcterranova.bona.lib;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

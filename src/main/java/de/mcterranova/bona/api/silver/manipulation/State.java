@@ -1,4 +1,4 @@
-package xyz.sakubami.framework.logic;
+package de.mcterranova.bona.api.silver.manipulation;
 
 import org.bukkit.Material;
 

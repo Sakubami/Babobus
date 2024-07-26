@@ -1,4 +1,4 @@
-package xyz.sakubami.framework.chat;
+package de.mcterranova.bona.lib.chat;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;

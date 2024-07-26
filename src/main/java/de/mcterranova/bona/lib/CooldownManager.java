@@ -1,4 +1,4 @@
-package xyz.sakubami.framework.utils;
+package de.mcterranova.bona.lib;
 
 import java.time.Duration;
 import java.time.Instant;

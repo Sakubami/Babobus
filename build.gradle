@@ -1,11 +1,11 @@
 plugins {
     id 'java'
-    id "com.github.johnrengelman.shadow" version "8.1.1"
+    id("io.github.goooler.shadow") version "8.1.8"
     id 'maven-publish'
 }
 
 group = 'org.github.Sakubami'
-version = '1.0.3'
+version = '1.1.0'
 
 repositories {
     mavenCentral()
@@ -37,18 +37,18 @@ java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+        vendor = JvmVendorSpec.AMAZON
     }
 }
 
 publishing {
     publications {
-        release(MavenPublication) {
-            from components.java
-            groupId = 'com.github.Sakubami' as Publication
-            artifactId = 'DTLib' as Publication
-            version = '1.0.3' as Publication
+        publishToMavenLocal(MavenPublication) {
+            groupId = 'com.github.Sakubami'
+            artifactId = 'Babobus'
+            version = '1.1.0'
         }
     }
 }

@@ -1,4 +1,4 @@
-name: DTLib
+name: Bona
 version: '${version}'
-main: org.nations.DTLib
+main: org.nations.Bona
 api-version: '1.21'

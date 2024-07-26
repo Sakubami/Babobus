@@ -1,5 +1,7 @@
-package xyz.sakubami.framework.logic;
+package de.mcterranova.bona.api.silver.manipulation;
 
+import de.mcterranova.bona.Bona;
+import de.mcterranova.bona.lib.chat.Chat;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -8,8 +10,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import xyz.sakubami.DTLib;
-import xyz.sakubami.framework.chat.Chat;
 
 /**
  * @author sakubami
@@ -39,7 +39,7 @@ public class SilverManager {
      * @since 1.0
      */
     public void roll(int chance, Location location) {
-        if (chance >= DTLib.randomGenerator.nextInt(10000)) {
+        if (chance >= Bona.randomGenerator.nextInt(10000)) {
             generate(location);
         }
     }
