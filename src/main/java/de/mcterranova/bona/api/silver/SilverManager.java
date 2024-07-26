@@ -1,4 +1,4 @@
-package de.mcterranova.bona.api.silver.manipulation;
+package de.mcterranova.bona.api.silver;
 
 import de.mcterranova.bona.Bona;
 import de.mcterranova.bona.lib.chat.Chat;
@@ -13,58 +13,54 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * @author sakubami
- * @since 1.0
+ * @since 0.0.1
  */
 public class SilverManager {
 
-    public static SilverManager manager;
-    private ItemStack placeHolder;
-
-    //TODO include silver changing to ingots / blocks
-    //TODO later >> include this in the Lib
-
-    /**
-     * initializes the {@link SilverManager} class
-     * @since 1.0
-     */
-    public static void init() {
-        if (manager != null) return;
-        manager = new SilverManager();
-    }
+    private static ItemStack placeHolder;
 
     /**
      * rolls for if an {@link ItemStack} should drop when a certain block is mined.
-     * @param chance chance in percentage multiplied by 100
+     *
+     * @param chance   chance in percentage multiplied by 100
      * @param location used by the {@code generate} method
-     * @since 1.0
+     * @since 0.0.1
      */
-    public void roll(int chance, Location location) {
-        if (chance >= Bona.randomGenerator.nextInt(10000)) {
+    public static void roll(int chance, Location location) {
+        if (chance >= Bona.getRandomGenerator().nextInt(10000)) {
             generate(location);
         }
     }
 
     /**
      * generates an {@link ItemStack} at given location.
+     *
      * @param location defines the location of the spawn where the {@link ItemStack} is ought to generate.
-     * @since 1.0
+     * @since 0.0.1
      */
-    public void generate(Location location) {
+    public static void generate(Location location) {
         World world = location.getWorld();
         location.getWorld().dropItemNaturally(new Location(world, location.getBlockX(), location.getBlockY(), location.getBlockZ()), placeholder());
         world.playSound(location, Sound.BLOCK_BELL_RESONATE, 2, 14);
     }
 
-    public void setPlaceHolder(ItemStack placeHolder) {
-        this.placeHolder = placeHolder;
+    /**
+     * sets the {@link ItemStack} placeholder which will be used instead of the default {@link ItemStack} placeholder
+     *
+     * @param newPlaceHolder the {@link ItemStack} to set
+     * @since 0.0.1
+     */
+    public static void setPlaceHolder(ItemStack newPlaceHolder) {
+        placeHolder = newPlaceHolder;
     }
 
     /**
      * uses this placeholder if the {@link ItemStack} placeholder has not been changed
+     *
      * @return the {@link ItemStack} that is used by this class
-     * @since 1.0
+     * @since 0.0.1
      */
-    private ItemStack placeholder() {
+    private static ItemStack placeholder() {
         if (placeHolder != null)
             return placeHolder;
         ItemStack itemStack = new ItemStack(Material.IRON_NUGGET);
@@ -80,12 +76,14 @@ public class SilverManager {
      * is meant to be accessed via interactions with an {@link org.bukkit.inventory.Inventory}
      * or another type of GUI where the {@link org.bukkit.entity.Player} can choose from 3 different
      * actions where the state can directly be passed on to this method
+     * or used by the methods {@code compact} or {@code deCompact}
+     *
      * @param convertible the {@link ItemStack} that is to be converted
-     * @param to the {@link State} that the {@link ItemStack} is converted to
+     * @param to          the {@link SilverState} that the {@link ItemStack} is converted to
      * @return the conversion of the initial {@link ItemStack}
-     * @since 1.0
+     * @since 0.0.1
      */
-    public ItemStack convert(ItemStack convertible, State to) {
+    public static ItemStack convert(ItemStack convertible, SilverState to) {
         if (!convertible.hasItemMeta())
             return convertible;
         if (convertible.getType().equals(to.getMaterial()))
@@ -97,10 +95,20 @@ public class SilverManager {
     }
 
     /**
-     * @return this instance of the {@link SilverManager} class
-     * @since 1.0
+     * @param convertible the {@link ItemStack} that is to be converted
+     * @return the compacted version of the initial {@link ItemStack}
+     * @since 0.1.0
      */
-    public static SilverManager get() {
-        return manager;
+    public static ItemStack compact(ItemStack convertible) {
+        return convert(convertible, SilverState.valueOf(convertible.getType()).getNext());
+    }
+
+    /**
+     * @param convertible the {@link ItemStack} that is to be converted
+     * @return the deCompacted version of the initial {@link ItemStack}
+     * @since 0.1.0
+     */
+    public static ItemStack deCompact(ItemStack convertible) {
+        return convert(convertible, SilverState.valueOf(convertible.getType()).getPrevious());
     }
 }

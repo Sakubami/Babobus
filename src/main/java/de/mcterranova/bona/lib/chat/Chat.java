@@ -8,10 +8,8 @@ import java.util.Random;
 
 public class Chat {
 
-    public static String chatPrefix = "[Nations] ";
-
     public static void sendMessage(Player p, String message) {
-        p.sendMessage(MiniMessage.miniMessage().deserialize("<gradient:#88EBFF:#C9FFC2>" + chatPrefix + message + "</gradient>"));
+        p.sendMessage(MiniMessage.miniMessage().deserialize("<gradient:#88EBFF:#C9FFC2>" + message + "</gradient>"));
     }
 
     public static Component returnRedFade(String message) {

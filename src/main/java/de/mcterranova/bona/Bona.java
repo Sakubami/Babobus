@@ -1,12 +1,22 @@
 package de.mcterranova.bona;
 
+import org.bukkit.plugin.java.JavaPlugin;
+
 import java.util.Random;
 
-public final class Bona {
+public final class Bona extends JavaPlugin {
 
-    public static Random randomGenerator;
+    private static Random randomGenerator;
 
-    public static void initLibrary() {
+    @Override
+    public void onEnable() {
         randomGenerator = new Random();
     }
+
+    @Override
+    public void onDisable() {
+
+    }
+
+    public static Random getRandomGenerator() { return randomGenerator; }
 }
